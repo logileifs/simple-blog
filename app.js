@@ -33,6 +33,15 @@ app.get('/', (req, res) => {
     res.locals.cosmic = cosmic
     res.render('index.html', { partials })
   })
+  var params = {
+    type_slug: 'comments',
+    limit: 5,
+    skip: 0
+  };
+  Cosmic.getObjectType({ bucket: { slug: bucket_slug, read_key: read_key } }, params, function(error, response){
+    console.log('comments')
+    console.log(response)
+  });
 })
 // Single Post
 app.get('/:slug', (req, res) => {
